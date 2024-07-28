@@ -1,10 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://vvrqtoeh2ru2"]
+[gd_scene load_steps=7 format=3 uid="uid://vvrqtoeh2ru2"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_qyf1l"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_igwmy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3hwps"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gxjml"]
+albedo_color = Color(0, 0, 0.227451, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_jqk1e"]
+material = SubResource("StandardMaterial3D_gxjml")
+
+[sub_resource type="GDScript" id="GDScript_l7xkk"]
+resource_name = "gyro"
+script/source = "extends Node3D
+
+class_name Gyro
+
+@onready var player: CharacterBody3D = $\"..\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void: 
+	self.position = player.position
+"
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_qyf1l")
@@ -14,11 +33,23 @@ script = ExtResource("1_qyf1l")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
 mesh = SubResource("CapsuleMesh_igwmy")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_3hwps")
+
+[node name="Eye" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.176232, 0.571198, -0.482504)
+mesh = SubResource("SphereMesh_jqk1e")
+
+[node name="Eye2" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.143214, 0.571198, -0.482504)
+mesh = SubResource("SphereMesh_jqk1e")
+
+[node name="Gyro" type="Node3D" parent="."]
+top_level = true
+script = SubResource("GDScript_l7xkk")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Gyro"]
 transform = Transform3D(1, 0, 0, 0, 0.94472, 0.327878, 0, -0.327878, 0.94472, 0, 0, 0)
 spring_length = 10.0
 
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_3hwps")
+[node name="Camera3D" type="Camera3D" parent="Gyro/SpringArm3D"]
