@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://benvua7xjj4vx"
-path="res://.godot/imported/proto_player.glb-6c7a33642da10f3164bfb7cd0da15102.scn"
+uid="uid://cu7yrgt01mid5"
+path="res://.godot/imported/Barbarian.glb-69b1a9cf4058614cc57925f2f9de3c78.scn"
 
 [deps]
 
-source_file="res://models/proto_player.glb"
-dest_files=["res://.godot/imported/proto_player.glb-6c7a33642da10f3164bfb7cd0da15102.scn"]
+source_file="res://addons/kaykit_character_pack_adventures/Characters/gltf/Barbarian.glb"
+dest_files=["res://.godot/imported/Barbarian.glb-69b1a9cf4058614cc57925f2f9de3c78.scn"]
 
 [params]
 

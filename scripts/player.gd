@@ -3,7 +3,7 @@ extends CharacterBody3D
 class_name Player
 
 @export var controller: PlayerController
-@onready var animation_tree : AnimationTree = $AnimationTree
+@export var state_manager: StateManager
 
 func _ready() -> void:
 	# Setup the controller
@@ -11,7 +11,6 @@ func _ready() -> void:
 	controller.yaw_gyro = $Gyro
 	controller.spring_arm = $Gyro/SpringArm3D
 	$Gyro/SpringArm3D.add_excluded_object(self)
-	
 	# Establish mouse mode
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	

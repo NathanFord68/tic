@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bsqkqfa44u403"]
 
-[ext_resource type="PackedScene" uid="uid://vvrqtoeh2ru2" path="res://character/player/player.tscn" id="1_86r2s"]
+[ext_resource type="PackedScene" uid="uid://b7ux27dhotax1" path="res://character/player/proto_player.tscn" id="1_8fxi6"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gssdo"]
 
@@ -34,8 +34,8 @@ mesh = SubResource("BoxMesh_0u682")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6045, 0.5, -3.63675)
 mesh = SubResource("BoxMesh_0u682")
 
-[node name="Player" parent="." instance=ExtResource("1_86r2s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.816913, 0.57676, 0, -0.57676, 0.816913, -13.7267, 10.3943, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_8fxi6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00528, 0)

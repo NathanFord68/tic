@@ -9,6 +9,8 @@ var owner: CharacterBody3D
 var yaw_gyro: Node3D
 var spring_arm: SpringArm3D
 
+signal send_state
+
 func handle_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotate_camera(event.relative.clamp(Vector2(-1, -1), Vector2(1, 1)))
@@ -16,7 +18,7 @@ func handle_input(event: InputEvent) -> void:
 func handle_process(delta: float) -> void:
 	# Capture Input
 	var movement := Input.get_vector("left", "right", "forward", "backward") * speed
-	var controller_rotation := Input.get_vector("camera_pitch_down", "camera_pitch_up", "camera_yaw_left", "camera_yaw_right")
+	var controller_rotation := Vector2(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X), Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y))
 	
 	# If we are using a controller, call the rotate camera for the controller rotation
 	if (not controller_rotation.is_zero_approx()):
@@ -43,3 +45,6 @@ func rotate_camera(rot: Vector2) -> void:
 	# rotate the springarm
 	if not (spring_arm.rotation.x >= 0 and rot.y >= 0) and not (spring_arm.rotation.x <= deg_to_rad(-90) and rot.y <= 0):
 		spring_arm.rotate_x( rot.y * pitch_rot_speed * owner.get_physics_process_delta_time() )
+		
+func perform_light_attack() -> void:
+	pass
