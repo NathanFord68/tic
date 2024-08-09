@@ -11,6 +11,7 @@ func _ready() -> void:
 	controller.yaw_gyro = $Gyro
 	controller.spring_arm = $Gyro/SpringArm3D
 	$Gyro/SpringArm3D.add_excluded_object(self)
+	
 	# Establish mouse mode
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
