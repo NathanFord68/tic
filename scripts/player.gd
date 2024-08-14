@@ -3,7 +3,6 @@ extends CharacterBody3D
 class_name Player
 
 @export var controller: PlayerController
-@export var state_manager: StateManager
 
 func _ready() -> void:
 	# Setup the controller
